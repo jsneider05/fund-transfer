@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: fund-transfer
+  profiles:
+    active: ${FUNDTRANSFER_ACTIVE_PROFILE:dev}
+
+server:
+  port: ${FUNDTRANSFER_SERVER_PORT:8089}
+  servlet:
+    context-path: /api

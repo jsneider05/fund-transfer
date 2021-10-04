@@ -1,0 +1,11 @@
+INSERT INTO public.user (id, email, enabled, password, user_name) VALUES ('023fcfd8-1671-4d8c-8489-ddba3af93173', 'joan@gmail.com', true, '$2y$12$V2LZGXmlHsR95aZMG5DReeP5Ro1aPY0ZfL38zvnSf/gUaKi4XI9/u', 'Joan');
+INSERT INTO public.user (id, email, enabled, password, user_name) VALUES ('b6bd239d-01e2-4659-a425-7e086f288279', 'angie@gmail.com', true, '$2y$12$V2LZGXmlHsR95aZMG5DReeP5Ro1aPY0ZfL38zvnSf/gUaKi4XI9/u', 'Angie');
+INSERT INTO public.role (id, name) VALUES ('d96d15e3-3d41-4780-a87f-37888e04888e', 'ADMIN');
+INSERT INTO public.role (id, name) VALUES ('70e50793-eee8-421d-befc-71ead4e3f152', 'ADMINTRAINEE');
+INSERT INTO public.privilege (id, name) VALUES ('f026ad08-43e4-4216-a565-9e63cf97354a', 'fund:write');
+INSERT INTO public.privilege (id, name) VALUES ('953efc83-2ff9-4945-88a0-41dace16f805', 'fund:read');
+INSERT INTO public.user_role (user_id, role_id) VALUES ('023fcfd8-1671-4d8c-8489-ddba3af93173', 'd96d15e3-3d41-4780-a87f-37888e04888e');
+INSERT INTO public.role_privilege (role_id, privilege_id) VALUES ('d96d15e3-3d41-4780-a87f-37888e04888e', 'f026ad08-43e4-4216-a565-9e63cf97354a');
+INSERT INTO public.role_privilege (role_id, privilege_id) VALUES ('d96d15e3-3d41-4780-a87f-37888e04888e', '953efc83-2ff9-4945-88a0-41dace16f805');
+INSERT INTO public.user_role (user_id, role_id) VALUES ('b6bd239d-01e2-4659-a425-7e086f288279', '70e50793-eee8-421d-befc-71ead4e3f152');
+INSERT INTO public.role_privilege (role_id, privilege_id) VALUES ('70e50793-eee8-421d-befc-71ead4e3f152', '953efc83-2ff9-4945-88a0-41dace16f805');

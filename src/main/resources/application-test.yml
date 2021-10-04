@@ -1,0 +1,40 @@
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: ${FUNDTRANSFER_DATABASE_URL:jdbc:h2:mem:fund;MODE=PostgreSQL}
+    username: ${FUNDTRANSFER_DATABASE_USERNAME:sa}
+    password: ${FUNDTRANSFER_DATABASE_PASSWORD:sa}
+    driver-class-name: org.h2.Driver
+  jpa:
+    generate-ddl: false
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: public
+  flyway:
+    enabled: true
+    url: ${FUNDTRANSFER_DATABASE_URL:jdbc:h2:mem:fund}
+    schemas: fund
+    user: ${FUNDTRANSFER_DATABASE_USERNAME:sa}
+    password: ${FUNDTRANSFER_DATABASE_PASSWORD:sa}
+    locations: filesystem:src/main/resources/db/migration/h2
+    table: bc_schema_version
+    out-of-order: true
+    validate-on-migrate: true
+
+application:
+  jwt:
+    secretKey: securesecuresecuresecuresecuresecuresecuresecure
+    tokenPrefix: Bearer
+    tokenExpirationAfterDays: 10
+
+logging:
+  pattern:
+    console: "%clr(%d{${LOG_DATEFORMAT_PATTERN:yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{5}){cyan} %clr(:){faint} %40(%clr([%M])) %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+    file: "%d{${LOG_DATEFORMAT_PATTERN:yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} : [%M] : %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"

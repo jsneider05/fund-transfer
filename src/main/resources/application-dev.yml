@@ -1,0 +1,42 @@
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: ${FUNDTRANSFER_DATABASE_URL:jdbc:postgresql://localhost:5434/yellowpepper}
+    username: ${FUNDTRANSFER_DATABASE_USERNAME:postgres}
+    password: ${FUNDTRANSFER_DATABASE_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        default_schema: public
+  flyway:
+    enabled: true
+    url: ${FUNDTRANSFER_DATABASE_URL:jdbc:postgresql://localhost:5434/yellowpepper}
+    schemas: fund
+    user: ${FUNDTRANSFER_DATABASE_USERNAME:postgres}
+    password: ${FUNDTRANSFER_DATABASE_PASSWORD:password}
+    locations: filesystem:src/main/resources/db/migration/postgresql
+    table: bc_schema_version
+    out-of-order: true
+    validate-on-migrate: true
+    ignore-future-migrations: true
+    ignore-missing-migrations: true
+
+application:
+  jwt:
+    secretKey: securesecuresecuresecuresecuresecuresecuresecure
+    tokenPrefix: Bearer
+    tokenExpirationAfterDays: 10
+
+logging:
+  pattern:
+    console: "%clr(%d{${LOG_DATEFORMAT_PATTERN:yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{5}){cyan} %clr(:){faint} %40(%clr([%M])) %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+    file: "%d{${LOG_DATEFORMAT_PATTERN:yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} : [%M] : %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
